@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// list === node * : DEFINIÇÃO LISTA CABEÇA
+
+// Definicao tipo lista "node"
+typedef struct node *list;
+
 // Definicao estrutura "node"
 struct node {
   int elem;
@@ -8,15 +13,15 @@ struct node {
 };
 
 // Criacao lista vazia
-struct node *new_list(int elem) {
-  struct node *l = malloc(sizeof(struct node));
+list new_list(int elem) {
+  list l = malloc(sizeof(struct node));
   l->elem = elem;
   l->next = NULL;
   return l;
 };
 
 // Exibicao elementos lista
-void show(struct node *l) {
+void show(list l) {
   for(; l; l = l->next) {
     printf("%d ", l->elem);
   };
@@ -24,15 +29,15 @@ void show(struct node *l) {
 };
 
 // Insere início lista
-void push(struct node **l, int elem) {
-  struct node *aux = new_list(elem);
+void push(list *l, int elem) {
+  list aux = new_list(elem);
   aux->next = *l;
   *l = aux;
 };
 
 // Remove primeiro elemento
 // "->" tem maior precedencia que "*", por isso usa-se (*l)
-int pop(struct node **l) {
+int pop(list *l) {
   if(*l) {
     int elem = (*l)->elem;
     *l = (*l)->next;
@@ -42,7 +47,7 @@ int pop(struct node **l) {
 };
 
 // Insere final lista
-void append(struct node **l, int elem) {
+void append(list *l, int elem) {
   if (*l) {
     // Nao esta no ultimo elemento
     //    l        : list*
@@ -57,7 +62,7 @@ void append(struct node **l, int elem) {
 };
 
 int main() {
-  struct node *l = NULL;
+  list l = NULL;
   show(l); //
   push(&l, 3);
   show(l); // 3
