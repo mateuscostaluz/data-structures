@@ -18,22 +18,22 @@ list new_list(int elem) {
   l->elem = elem;
   l->next = NULL;
   return l;
-};
+}
 
 // Exibicao elementos lista
 void show(list l) {
   for(; l; l = l->next) {
     printf("%d ", l->elem);
-  };
+  }
   printf("\n");
-};
+}
 
 // Insere início lista
 void push(list *l, int elem) {
   list aux = new_list(elem);
   aux->next = *l;
   *l = aux;
-};
+}
 
 // Remove primeiro elemento
 // "->" tem maior precedencia que "*", por isso usa-se (*l)
@@ -42,9 +42,9 @@ int pop(list *l) {
     int elem = (*l)->elem;
     *l = (*l)->next;
     return elem;
-  };
+  }
   return -999;
-};
+}
 
 // Insere final lista
 void append(list *l, int elem) {
@@ -58,8 +58,8 @@ void append(list *l, int elem) {
   } else {
     // Esta no ultimo elemento
     *l = new_list(elem);
-  };
-};
+  }
+}
 
 int main() {
   list l = NULL;
@@ -81,4 +81,4 @@ int main() {
   append(&l, 3);
   show(l); // 1 2 3
   return 0;
-};
+}
