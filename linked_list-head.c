@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// list === node * : DEFINIÇÃO LISTA CABEÇA
+// list === node * : DEFINICAO LISTA CABECA
 
 // Definicao tipo lista "node"
 typedef struct node *list;
@@ -28,7 +28,7 @@ void show(list l) {
   printf("\n");
 }
 
-// Insere início lista
+// Insere inicio lista
 void push(list *l, int elem) {
   list aux = new_list(elem);
   aux->next = *l;

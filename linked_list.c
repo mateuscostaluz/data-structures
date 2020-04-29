@@ -23,7 +23,7 @@ void show(struct node *l) {
   printf("\n");
 }
 
-// Insere início lista
+// Insere inicio lista
 void push(struct node **l, int elem) {
   struct node *aux = new_list(elem);
   aux->next = *l;

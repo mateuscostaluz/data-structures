@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-// Define a primeira posição (i) do vetor como a menor e compara com as demais
-// Depois define a próxima posição (i + 1) como a menor e também compara com as demais
-// Segue, sucessivamente, até o final do vetor
-// No fim da iteração ocorre a troca do elemento definido com o menor do vetor, caso necessário
-// Os elementos antes do índice atual (i) já encontram-se organizados
+// Define a primeira posicao (i) do vetor como a menor e compara com as demais
+// Depois define a proxima posicao (i + 1) como a menor e tambem compara com as demais
+// Segue, sucessivamente, ate o final do vetor
+// No fim da iteracao ocorre a troca do elemento definido com o menor do vetor, caso necessario
+// Os elementos antes do indice atual (i) ja encontram-se organizados
 
 void select_sort(int* v, int n) {
   int min = 0;
   int temp = 0;
-  for(int i = 0; i < n; i++) {
+  for(int i = 0; i < n - 1; i++) {
     min = i;
     for(int j = i + 1; j < n; j++) {
       if(v[j] < v[min]) {
