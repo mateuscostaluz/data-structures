@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void compra(int *f, int i, int *t, int n, int lote) {
+void compra(int *f, int *t, int n, int lote) {
     if(*t == n) {
         return -999;
     }
@@ -13,9 +13,9 @@ void compra(int *f, int i, int *t, int n, int lote) {
     return 1;
 }
 
-int venda(int *f, int i, int *t, int n) {
+int venda(int *f, int *t, int n) {
     int loteRemovido = -999;
-    if(i != *t) {
+    if(*t != 0) {
         loteRemovido = f[*t-1];
         *t-=1;
     }
@@ -27,19 +27,18 @@ int main()
     int tamanhoEstoque;
     tamanhoEstoque = 10;
     int estoque[10];
-    int posicaoInicial = 0;
     int ultimaPosicao = 0;
-    compra(estoque, posicaoInicial, &ultimaPosicao, 10, 1);
-    compra(estoque, posicaoInicial, &ultimaPosicao, 10, 2);
-    compra(estoque, posicaoInicial, &ultimaPosicao, 10, 3);
+    compra(estoque, &ultimaPosicao, 10, 1);
+    compra(estoque, &ultimaPosicao, 10, 2);
+    compra(estoque, &ultimaPosicao, 10, 3);
     int loteVendido;
-    loteVendido = venda(estoque, posicaoInicial, &ultimaPosicao, tamanhoEstoque);
+    loteVendido = venda(estoque, &ultimaPosicao, tamanhoEstoque);
     printf("Lote removido: %d", loteVendido);
-    loteVendido = venda(&estoque, posicaoInicial, &ultimaPosicao, tamanhoEstoque);
+    loteVendido = venda(&estoque, &ultimaPosicao, tamanhoEstoque);
     printf("\nLote removido: %d", loteVendido);
-    loteVendido = venda(&estoque, posicaoInicial, &ultimaPosicao, tamanhoEstoque);
+    loteVendido = venda(&estoque, &ultimaPosicao, tamanhoEstoque);
     printf("\nLote removido: %d", loteVendido);
-    loteVendido = venda(&estoque, posicaoInicial, &ultimaPosicao, tamanhoEstoque);
+    loteVendido = venda(&estoque, &ultimaPosicao, tamanhoEstoque);
     printf("\nLote removido: %d", loteVendido);
     return 0;
 }
