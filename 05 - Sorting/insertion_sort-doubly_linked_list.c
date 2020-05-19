@@ -67,9 +67,9 @@ int main() {
   append(&l, 4);
   show(l); // 4
   insertion_sort(&l);
-  show(l); // 4
   append(&l, 7);
   show(l); // 4 7
+  insertion_sort(&l);
   append(&l, 2);
   show(l); // 4 7 2
   insertion_sort(&l);
