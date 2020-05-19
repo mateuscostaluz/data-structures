@@ -16,6 +16,10 @@ struct node *new_list(int elem) {
 }
 
 void show(struct node *l) {
+  if(!l) {
+    printf("Nothing to show.\n");
+    return;
+  }
   for(; l; l = l->next) {
     printf("%d ", l->elem);
   }
@@ -36,35 +40,46 @@ void append(struct node **l, int elem) {
 }
 
 void insertion_sort(struct node **l) {
-  if(*l == NULL || (*l)->next == NULL) return;
+  if((!*l) || (!(*l)->next)) {
+    printf("Nothing to sort.\n");
+    return;
+  }
   struct node *i = *l;
-  for(; i->next; i = i->next) {
-    int elem = i->elem;
-    struct node *prev = i->prev;
-    struct node *actual = (prev) ? prev->next : NULL;
-    while((prev) && (prev->elem > elem)) {
-      actual->elem = prev->elem;
-      prev = prev->prev;
+  struct node *j = i->next;
+  for(; j; j = j->next) {
+    int x = j->elem;
+    for(i = j->prev; i && i->elem > x; i = i->prev) {
+      i->next->elem = i->elem;
     }
-    if(actual) actual->elem = elem;
+    if(!i) {
+      i = *l;
+      i->elem = x;
+    } else {
+      i->next->elem = x;
+    }
   }
 }
 
 int main() {
   struct node *l = NULL;
+  insertion_sort(&l);
   show(l); //
   append(&l, 4);
+  show(l); // 4
+  insertion_sort(&l);
   show(l); // 4
   append(&l, 7);
   show(l); // 4 7
   append(&l, 2);
   show(l); // 4 7 2
+  insertion_sort(&l);
+  show(l); // 2 4 7
   append(&l, 5);
-  show(l); // 4 7 2 5
+  show(l); // 2 4 7 5
   append(&l, 4);
-  show(l); // 4 7 2 5 4
+  show(l); // 2 4 7 5 4
   append(&l, 0);
-  show(l); // 4 7 2 5 4 0
+  show(l); // 2 4 7 5 4 0
   insertion_sort(&l);
   show(l); // 0 2 4 4 5 7
   return 0;
