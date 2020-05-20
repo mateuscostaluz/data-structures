@@ -36,8 +36,7 @@ void append_prev(struct node **l, struct node *prev, int elem) {
 }
 
 void append(struct node **l, int elem) {
-  struct node *prev = *l ? (*l)->prev : *l;
-  append_prev(l, prev, elem);
+  append_prev(l, *l, elem);
 }
 
 void insertion_sort(struct node **l) {
