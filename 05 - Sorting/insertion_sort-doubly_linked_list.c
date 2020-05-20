@@ -36,11 +36,12 @@ void append_prev(struct node **l, struct node *prev, int elem) {
 }
 
 void append(struct node **l, int elem) {
-  append_prev(l, NULL, elem);
+  struct node *prev = *l ? (*l)->prev : *l;
+  append_prev(l, prev, elem);
 }
 
 void insertion_sort(struct node **l) {
-  if((!*l) || (!(*l)->next)) {
+  if(!*l || !(*l)->next) {
     printf("Nothing to sort.\n");
     return;
   }
