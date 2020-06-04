@@ -16,43 +16,14 @@ struct node *newnode(int data) {
 }
 
 struct node* insert(struct node* node, int data) {
-  if(node == NULL) return newnode(data);
+  if(!node) return newnode(data);
   if(data < node->data) node->left = insert(node->left, data);
   else node->right = insert(node->right, data);
   return node;
 }
 
-/*
-struct node * minimum(struct node* node) {
-  struct node* current = node;
-  while (current && current->left != NULL) current = current->left;
-  return current;
-}
-
 struct node* delete(struct node* root, int data) {
-  if(root == NULL) return root;
-  if(data < root->data) root->left = delete(root->left, data);
-  else if(data > root->data) root->right = delete(root->right, data);
-  else {
-    if(root->left == NULL) {
-      struct node *temp = root->right;
-      free(root);
-      return temp;
-    } else if(root->right == NULL) {
-      struct node *temp = root->left;
-      free(root);
-      return temp;
-    }
-    struct node* temp = minimum(root->right);
-    root->data = temp->data;
-    root->right = delete(root->right, temp->data);
-  }
-  return root;
-}
-*/
-
-struct node* delete(struct node* root, int data) {
-  if (root == NULL) return root;
+  if (!root) return root;
   if (root->data > data) {
     root->left = delete(root->left, data);
     return root;
@@ -61,12 +32,12 @@ struct node* delete(struct node* root, int data) {
     root->right = delete(root->right, data);
     return root;
   }
-  if (root->left == NULL) {
+  if (!root->left) {
     struct node* temp = root->right;
     free(root);
     return temp;
   }
-  else if (root->right == NULL) {
+  else if (!root->right) {
     struct node* temp = root->left;
     free(root);
     return temp;
@@ -74,7 +45,7 @@ struct node* delete(struct node* root, int data) {
   else {
     struct node* successorparent = root;
     struct node *succ = root->right;
-    while (succ->left != NULL) {
+    while (succ->left) {
       successorparent = succ;
       succ = succ->left;
     }
@@ -90,7 +61,7 @@ struct node* delete(struct node* root, int data) {
 
 int treeheight(struct node* root) {
   int left, right;
-  if (root == NULL) return -1;
+  if (!root) return -1;
   left = treeheight(root->left);
   right = treeheight(root->right);
   if (left > right) return left+1;
@@ -102,7 +73,7 @@ void height(struct node* root) {
 }
 
 void inorder(struct node *root) {
-  if (root != NULL) {
+  if (root) {
     inorder(root->left);
     printf("%d ", root->data);
     inorder(root->right);
