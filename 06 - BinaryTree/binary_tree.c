@@ -60,7 +60,8 @@ struct node* delete(struct node* root, int data) {
 }
 
 int treeheight(struct node* root) {
-  int left, right;
+  int left;
+  int right;
   if (!root) return -1;
   left = treeheight(root->left);
   right = treeheight(root->right);
