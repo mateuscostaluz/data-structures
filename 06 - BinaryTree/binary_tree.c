@@ -26,22 +26,24 @@ struct node* insert(struct node* node, int data) {
   // chama a si mesma, verifica se é maior ou menor do que o próximo node e
   // faz isso sucessivamente até encontrar a posição nula passível de inserção
 
-struct node* delete(struct node* root, int data) {
+struct node* search(struct node* root, int data) {
   // caso básico
   if (!root) return root;
 
-  // chamada recursiva para descobrir qual é antecessor
-  // do node que será deletado
+  // chamada recursiva para encontrar o node passado como parametro
   if (root->data > data) {
-    root->left = delete(root->left, data);
+    root->left = search(root->left, data);
     return root;
   }
   else if (root->data < data) {
-    root->right = delete(root->right, data);
+    root->right = search(root->right, data);
     return root;
   }
+}
 
-  // o codigo abaixo sera chamado quando o node a ser deletado for encontrado
+struct node* delete(struct node* root, int data) {
+  // busca o node a ser deletado
+  root = search(root, data);
 
   // verifica se os nodes abaixo do "antecessor" ("sucessor") estao vazios
   if (!root->left) {
