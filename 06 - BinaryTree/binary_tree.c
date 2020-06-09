@@ -43,7 +43,7 @@ struct node* delete(struct node* root, int data) {
 
   // o codigo abaixo sera chamado quando o node a ser deletado for encontrado
 
-  // verifica se os nodes abaixo do "antecessor" estao vazios
+  // verifica se os nodes abaixo do "antecessor" ("sucessor") estao vazios
   if (!root->left) {
     struct node* temp = root->right;
     free(root);
@@ -60,17 +60,17 @@ struct node* delete(struct node* root, int data) {
     struct node* successorparent = root;
     struct node *succ = root->right;
 
-    // encontra o "antecessor" (defini que seria sempre o menor)
+    // encontra o "antecessor" (foi definido que seria sempre o menor)
     while (succ->left) {
       successorparent = succ;
       succ = succ->left;
     }
 
-    // Deleta o "sucessor".
-    // Como o "sucessor" sempre é filho esquerdo de seu pai,
-    // podemos fazer o filho direito do "sucessor" como esquerdo de seu pai.
+    // deleta o "sucessor"
+    // como o "sucessor" sempre é filho esquerdo de seu pai,
+    // podemos fazer o filho direito do "sucessor" como esquerdo de seu pai
     // Se não houver "sucessor", faz a atribuicao de succ-> right
-    //                                          para succParent-> right.
+    //                                    para succParent-> right
     if (successorparent != root)
       successorparent->left = succ->right;
     else
@@ -127,6 +127,7 @@ void print(struct node *root) {
 int main() {
   struct node *root = NULL;
   print(root);
+  height(root);
   root = insert(root, 50);
   print(root);
   height(root);
