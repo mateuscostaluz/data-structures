@@ -120,16 +120,18 @@ void main() {
   struct Node* p = NULL;
 
   // create a unsorted linked lists to test the functions (2->3->20->5->10->15)
-  push(&p, 15);
-  push(&p, 10);
-  push(&p, 5);
-  push(&p, 20);
-  push(&p, 3);
+  push(&p, 4);
+  push(&p, 0);
+  push(&p, 6);
   push(&p, 2);
+  push(&p, 5);
+  push(&p, 1);
+  push(&p, 7);
+  push(&p, 3);
 
   // sort the linked list
   merge_sort(&p);
 
-  printf("Sorted: \n");
+  printf("Sorted: ");
   show(p);
 }
