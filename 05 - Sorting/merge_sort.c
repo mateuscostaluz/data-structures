@@ -30,6 +30,28 @@ struct Node {
   struct Node* next;
 };
 
+// print list
+void show(struct Node* p) {
+  for(; p; p = p->next) {
+    printf("%d ", p->data);
+  }
+}
+
+// insert a node at the beginging of the linked list
+void push(struct Node** p, int data) {
+  // allocate node
+  struct Node* new = (struct Node*)malloc(sizeof(struct Node));
+
+  // put 'data' in the data
+  new->data = data;
+
+  // link list in the new node
+  new->next = (*p);
+
+  // move the head to point to the new node
+  (*p) = new;
+}
+
 // split the nodes into two sublists
 void front_back_split(struct Node* p, struct Node** front, struct Node** back) {
   *front = p->next;
@@ -93,28 +115,6 @@ void merge_sort(struct Node** p) {
   *p = sorted_merge(a, b);
 }
 
-void show(struct Node* node) {
-  while (node != NULL) {
-    printf("%d ", node->data);
-    node = node->next;
-  }
-}
-
-// insert a node at the beginging of the linked list
-void push(struct Node** p, int data) {
-  // allocate node
-  struct Node* new = (struct Node*)malloc(sizeof(struct Node));
-
-  // put 'data' in the data
-  new->data = data;
-
-  // link list in the new node
-  new->next = (*p);
-
-  // move the head to point to the new node
-  (*p) = new;
-}
-
 void main() {
   struct Node* p = NULL;
 
@@ -128,9 +128,13 @@ void main() {
   push(&p, 7);
   push(&p, 3);
 
-  // sort the linked list
-  merge_sort(&p);
+  printf("Before sorting: ");
+  show(p);
 
-  printf("Sorted: ");
+  // sort list
+  merge_sort(&p);
+  printf("\n");
+
+  printf(" After sorting: ");
   show(p);
 }
