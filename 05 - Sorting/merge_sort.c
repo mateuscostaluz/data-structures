@@ -63,8 +63,7 @@ struct Node* sorted_merge(struct Node* a, struct Node* b) {
   if (a->data <= b->data) {
     p = a;
     p->next = sorted_merge(a->next, b);
-  }
-  else {
+  } else {
     p = b;
     p->next = sorted_merge(a, b->next);
   }
